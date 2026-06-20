@@ -1,0 +1,12 @@
+orderId,timestamp,subtotal,tax,total,items
+eae1ebfd,2026-06-10T18:27:54,62,00,6,20,68,20,"Cappuccino x7;Croissant x1"
+838bf6f0,2026-06-11T02:11:25,121.00,12.10,133.10,"Cappuccino x1;Latte x1;Croissant x1;Suco de Laranja x1;Cha Verde x20"
+ca8082c4,2026-06-11T03:36:57,45.50,4.55,50.05,"Croissant x7"
+ebdc98b5,2026-06-11T05:37:25,71.00,7.10,78.10,"Latte x1;Espresso x3;Bolo de Chocolate x2;Pao de Queijo x1;Croissant x3"
+f57507cb,2026-06-11T05:37:36,12.00,1.20,13.20,"Bolo de Chocolate x1"
+dd92ed4f,2026-06-11T05:37:50,7.00,0.70,7.70,"Suco de Laranja x1"
+929c8f48,2026-06-11T05:38:10,255.00,25.50,280.50,"Cappuccino x30"
+5dbb0b87,2026-06-11T05:40:32,60.00,6.00,66.00,"Banana x5"
+8d5191b8,2026-06-11T05:59:22,40.50,4.05,44.55,"Cappuccino x1;Espresso x1;Cafe com Leite x1;Latte x1;Banana x1"
+540d3d06,2026-06-11T06:04:02,350.00,35.00,385.00,"Suco de Laranja x50"
+113aafe0,2026-06-19T20:07:39,8.50,0.85,9.35,"Cappuccino x1"
