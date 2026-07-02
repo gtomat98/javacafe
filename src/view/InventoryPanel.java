@@ -30,7 +30,7 @@ public class InventoryPanel extends JPanel implements ActionListener {
         setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel titleLabel = new JLabel("📦 ESTOQUE");
+        JLabel titleLabel = new JLabel("ESTOQUE");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         topPanel.add(titleLabel);
         add(topPanel, BorderLayout.NORTH);
@@ -60,13 +60,13 @@ public class InventoryPanel extends JPanel implements ActionListener {
         add(tableScroll, BorderLayout.CENTER);
 
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 10));
-        addBtn = new JButton("➕ Adicionar Produto");
+        addBtn = new JButton("Adicionar Produto");
         addBtn.setFont(new Font("Segoe UI", Font.BOLD, 14));
         addBtn.setBackground(new Color(144, 238, 144)); // Light green
         addBtn.addActionListener(this);
         bottomPanel.add(addBtn);
         
-        editBtn = new JButton("✏️ Editar Produto Selecionado");
+        editBtn = new JButton("Editar Produto Selecionado");
         editBtn.setFont(new Font("Segoe UI", Font.BOLD, 14));
         editBtn.setBackground(new Color(144, 238, 144)); // Light green
         editBtn.addActionListener(this);
@@ -81,7 +81,7 @@ public class InventoryPanel extends JPanel implements ActionListener {
         inventoryController.reloadProducts();
         List<Product> products = inventoryController.getAllProducts();
         for (Product p : products) {
-            String status = p.isLowStock() ? "⚠️ Baixo" : "✅ OK";
+            String status = p.isLowStock() ? "Baixo" : "OK";
             ImageIcon icon = getScaledIcon(p.getImagePath(), 40, 40);
             tableModel.addRow(new Object[]{
                 icon, p.getId(), p.getName(), CurrencyFormatter.format(p.getPrice()), p.getStockQuantity(), status
@@ -235,7 +235,7 @@ public class InventoryPanel extends JPanel implements ActionListener {
             Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             if (!isSelected) {
                 String status = (String) table.getModel().getValueAt(row, 5);
-                if ("⚠️ Baixo".equals(status)) {
+                if ("Baixo".equals(status)) {
                     c.setBackground(new Color(255, 230, 204));
                 } else {
                     c.setBackground(Color.WHITE);

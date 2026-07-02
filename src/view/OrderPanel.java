@@ -39,7 +39,7 @@ public class OrderPanel extends JPanel implements ActionListener {
 
         // Header
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel titleLabel = new JLabel("☕ PEDIDO ATUAL");
+        JLabel titleLabel = new JLabel("PEDIDO ATUAL");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         topPanel.add(titleLabel);
         add(topPanel, BorderLayout.NORTH);
@@ -72,7 +72,7 @@ public class OrderPanel extends JPanel implements ActionListener {
         
         JPanel tableContainer = new JPanel(new BorderLayout(0, 5));
         tableContainer.add(tableScroll, BorderLayout.CENTER);
-        btnRemove = new JButton("➖ Remover da Lista");
+        btnRemove = new JButton("Remover da Lista");
         btnRemove.setFont(new Font("Segoe UI", Font.BOLD, 12));
         btnRemove.setBackground(new Color(255, 230, 230));
         btnRemove.addActionListener(this);
@@ -111,13 +111,13 @@ public class OrderPanel extends JPanel implements ActionListener {
         paidField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         actionsPanel.add(paidField);
 
-        btnClear = new JButton("🗑️ Limpar");
+        btnClear = new JButton("Limpar");
         btnClear.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnClear.setBackground(new Color(255, 230, 230)); // Fundo vermelho clarinho
         btnClear.addActionListener(this);
         actionsPanel.add(btnClear);
 
-        btnFinalize = new JButton("✅ Finalizar Venda");
+        btnFinalize = new JButton("Finalizar Venda");
         btnFinalize.setFont(new Font("Segoe UI", Font.BOLD, 16));
         btnFinalize.setBackground(new Color(144, 238, 144)); // Verde claro
         btnFinalize.setForeground(new Color(0, 50, 0));
@@ -281,7 +281,7 @@ public class OrderPanel extends JPanel implements ActionListener {
         area.setEditable(false);
         area.setFont(new Font("Monospaced", Font.PLAIN, 12));
         
-        JButton saveBtn = new JButton("💾 Salvar Recibo (.txt)");
+        JButton saveBtn = new JButton("Salvar Recibo (.txt)");
         saveBtn.addActionListener(new SaveReceiptAction(receiptText));
         
         Object[] message = {

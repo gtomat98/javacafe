@@ -32,16 +32,16 @@ public class ReportsPanel extends JPanel implements ActionListener {
         setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
         JPanel topPanel = new JPanel(new BorderLayout());
-        JLabel titleLabel = new JLabel("📊 RELATÓRIOS DE VENDAS");
+        JLabel titleLabel = new JLabel("RELATÓRIOS DE VENDAS");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         topPanel.add(titleLabel, BorderLayout.NORTH);
         
         JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
-        btnToday = new JButton("📅 Hoje");
+        btnToday = new JButton("Hoje");
         btnToday.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        btnWeek = new JButton("📆 Semana Atual");
+        btnWeek = new JButton("Semana Atual");
         btnWeek.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        btnMonth = new JButton("🗓️ Mês Atual");
+        btnMonth = new JButton("Mês Atual");
         btnMonth.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         
         btnToday.addActionListener(this);
@@ -94,7 +94,7 @@ public class ReportsPanel extends JPanel implements ActionListener {
         centerPanel.add(transactionsLabel);
         
         JPanel listPanel = new JPanel(new BorderLayout(5, 5));
-        JLabel topLabel = new JLabel("⭐ Top 3 Mais Vendidos:");
+        JLabel topLabel = new JLabel("Top 3 Mais Vendidos:");
         topLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
         listPanel.add(topLabel, BorderLayout.NORTH);
         
