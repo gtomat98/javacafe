@@ -224,7 +224,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             orderController.addItem(product, 1);
             refreshOrderView();
         } catch (OutOfStockException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Out of Stock", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Estoque Insuficiente", JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -236,14 +236,14 @@ public class OrderPanel extends JPanel implements ActionListener {
             orderController.removeItem(p);
             refreshOrderView();
         } else {
-            JOptionPane.showMessageDialog(this, "Please select an item to remove.", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecione um item da lista para remover.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }
 
     private void onFinalizeOrder() {
         String paidText = paidField.getText().trim();
         if (paidText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter the amount paid.", "Required field", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Informe o valor pago pelo cliente.", "Campo obrigatório", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
@@ -251,12 +251,12 @@ public class OrderPanel extends JPanel implements ActionListener {
         try {
             amountPaid = Double.parseDouble(paidText.replace(',', '.'));
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Invalid amount. Use numbers only.", "Input error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Valor inválido. Use apenas números.", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         if (orderController.getCurrentItems().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "The order is empty.", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "O pedido está vazio.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -265,10 +265,8 @@ public class OrderPanel extends JPanel implements ActionListener {
             showReceipt(orderController.getLastReceiptText());
             paidField.setText("");
             refreshOrderView();
-        } catch (InvalidPaymentException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Invalid payment", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Internal error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro interno: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -291,7 +289,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             saveBtn
         };
 
-        JOptionPane.showMessageDialog(this, message, "Receipt", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, message, "Recibo", JOptionPane.INFORMATION_MESSAGE);
     }
 
     // Inner class to explicitly handle saving the receipt instead of an anonymous class
@@ -305,7 +303,7 @@ public class OrderPanel extends JPanel implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             JFileChooser chooser = new JFileChooser();
-            chooser.setDialogTitle("Save Receipt");
+            chooser.setDialogTitle("Salvar Recibo");
             if (chooser.showSaveDialog(OrderPanel.this) == JFileChooser.APPROVE_OPTION) {
                 File file = chooser.getSelectedFile();
                 if (!file.getName().endsWith(".txt")) {
@@ -315,9 +313,9 @@ public class OrderPanel extends JPanel implements ActionListener {
                     java.io.FileWriter writer = new java.io.FileWriter(file);
                     writer.write(receiptText);
                     writer.close();
-                    JOptionPane.showMessageDialog(OrderPanel.this, "Receipt saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(OrderPanel.this, "Recibo salvo com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(OrderPanel.this, "Error saving receipt: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(OrderPanel.this, "Erro ao salvar recibo: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }

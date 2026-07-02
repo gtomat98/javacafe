@@ -20,16 +20,16 @@ public class InventoryController {
 
     private final IProductRepository productRepository;
     private final IReportService reportService;
-    private final service.OrderService orderService;
+    private final OrderController orderController;
     private List<Product> cachedProducts;
 
     // Constructs the controller and eagerly loads all products into memory.
-    // By keeping a cached copy, the graphical interface can render tables and menus instantly
-    // without having to read from the disk every time a tab is switched.
-    public InventoryController() {
+    // Receives the shared OrderController so that cart checks use the same
+    // instance that the OrderPanel operates on, preventing stale state.
+    public InventoryController(OrderController orderController) {
         this.productRepository = new repository.ProductRepository();
         this.reportService = new service.ReportService();
-        this.orderService = new service.OrderService();
+        this.orderController = orderController;
         this.cachedProducts = productRepository.loadAll();
     }
 
@@ -54,8 +54,8 @@ public class InventoryController {
     // Crucially, it actively blocks any edits if the cashier is currently midway through assembling an order,
     // to prevent the cart's pricing or stock calculation from becoming corrupted.
     public void updateProduct(String productId, String newName, double newPrice, int newStock, String imagePath) {
-        if (!orderService.getCurrentItems().isEmpty()) {
-            throw new IllegalStateException("Cannot edit products while there are items in the customer's cart.");
+        if (!orderController.getCurrentItems().isEmpty()) {
+            throw new IllegalStateException("Não é possível editar produtos enquanto há itens no carrinho do cliente.");
         }
         for (Product p : cachedProducts) {
             if (p.getId().equals(productId)) {

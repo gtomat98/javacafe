@@ -120,9 +120,9 @@ public class ReportsPanel extends JPanel implements ActionListener {
 
     public void displayReport(SalesReport report) {
         if (report == null) return;
-        periodLabel.setText("Period: " + report.getPeriodLabel() + " (" + report.getFrom() + " to " + report.getTo() + ")");
-        revenueLabel.setText("Total Revenue: " + CurrencyFormatter.format(report.getTotalRevenue()));
-        transactionsLabel.setText("No. of Transactions: " + report.getTransactionCount());
+        periodLabel.setText("Período: " + report.getPeriodLabel() + " (" + report.getFrom() + " a " + report.getTo() + ")");
+        revenueLabel.setText("Receita Total: " + CurrencyFormatter.format(report.getTotalRevenue()));
+        transactionsLabel.setText("Nº de Transações: " + report.getTransactionCount());
         
         topItemsModel.clear();
         int i = 1;
@@ -131,7 +131,7 @@ public class ReportsPanel extends JPanel implements ActionListener {
             i++;
         }
         if (report.getTopThreeItems().isEmpty()) {
-            topItemsModel.addElement("  No sales recorded in this period.");
+            topItemsModel.addElement("  Nenhuma venda registrada neste período.");
         }
     }
 

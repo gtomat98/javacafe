@@ -102,21 +102,21 @@ public class InventoryPanel extends JPanel implements ActionListener {
         JTextField nameField = new JTextField();
         JTextField priceField = new JTextField();
         JTextField stockField = new JTextField();
-        JLabel imgLabel = new JLabel("No image");
-        JButton imgBtn = new JButton("Select Photo...");
+        JLabel imgLabel = new JLabel("Nenhuma imagem");
+        JButton imgBtn = new JButton("Selecionar Foto...");
         
         final String[] selectedImagePath = {null};
 
         imgBtn.addActionListener(new ImageSelectAction(selectedImagePath, imgLabel));
 
         Object[] message = {
-            "Name:", nameField,
-            "Price:", priceField,
-            "Initial Stock:", stockField,
-            "Photo:", imgBtn, imgLabel
+            "Nome:", nameField,
+            "Preço:", priceField,
+            "Estoque Inicial:", stockField,
+            "Foto:", imgBtn, imgLabel
         };
         
-        int option = JOptionPane.showConfirmDialog(this, message, "Add Product", JOptionPane.OK_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(this, message, "Adicionar Produto", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             try {
                 String name = nameField.getText().trim();
@@ -124,13 +124,13 @@ public class InventoryPanel extends JPanel implements ActionListener {
                 int stock = Integer.parseInt(stockField.getText().trim());
                 
                 if (name.isEmpty() || price <= 0 || stock < 0) {
-                    throw new IllegalArgumentException("Invalid values.");
+                    throw new IllegalArgumentException("Valores inválidos.");
                 }
                 
                 inventoryController.addProduct(name, price, stock, selectedImagePath[0]);
                 refreshInventoryView();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -138,7 +138,7 @@ public class InventoryPanel extends JPanel implements ActionListener {
     private void onEditProduct() {
         int row = productsTable.getSelectedRow();
         if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a product from the table first.", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecione um produto da tabela primeiro.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -151,22 +151,22 @@ public class InventoryPanel extends JPanel implements ActionListener {
         JTextField nameField = new JTextField(currentName);
         JTextField priceField = new JTextField(currentPrice);
         JTextField stockField = new JTextField(String.valueOf(currentStock));
-        JLabel imgLabel = new JLabel("Keep current image");
-        JButton imgBtn = new JButton("Select New Photo...");
+        JLabel imgLabel = new JLabel("Manter imagem atual");
+        JButton imgBtn = new JButton("Selecionar Nova Foto...");
 
         final String[] selectedImagePath = {null};
 
         imgBtn.addActionListener(new ImageSelectAction(selectedImagePath, imgLabel));
 
         Object[] message = {
-            "Product ID: " + productId,
-            "Name:", nameField,
-            "Price:", priceField,
-            "Stock:", stockField,
-            "New Photo (Optional):", imgBtn, imgLabel
+            "ID do Produto: " + productId,
+            "Nome:", nameField,
+            "Preço:", priceField,
+            "Estoque:", stockField,
+            "Nova Foto (Opcional):", imgBtn, imgLabel
         };
 
-        int option = JOptionPane.showConfirmDialog(this, message, "Update Product", JOptionPane.OK_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(this, message, "Editar Produto", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             try {
                 String name = nameField.getText().trim();
@@ -174,14 +174,14 @@ public class InventoryPanel extends JPanel implements ActionListener {
                 int stock = Integer.parseInt(stockField.getText().trim());
 
                 if (name.isEmpty() || price <= 0 || stock < 0) {
-                    throw new IllegalArgumentException("Invalid values.");
+                    throw new IllegalArgumentException("Valores inválidos.");
                 }
 
                 inventoryController.updateProduct(productId, name, price, stock, selectedImagePath[0]);
                 refreshInventoryView();
-                JOptionPane.showMessageDialog(this, "Product updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Produto atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

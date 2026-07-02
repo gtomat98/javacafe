@@ -18,7 +18,7 @@ public class MainFrame extends JFrame implements javax.swing.event.ChangeListene
 
     public MainFrame() {
         OrderController orderController = new OrderController();
-        this.inventoryController = new InventoryController();
+        this.inventoryController = new InventoryController(orderController);
         setTitle(AppConstants.APP_TITLE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1024, 768);
@@ -34,9 +34,9 @@ public class MainFrame extends JFrame implements javax.swing.event.ChangeListene
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
-        tabs.addTab("☕ Pedidos", orderPanel);
-        tabs.addTab("📦 Estoque", inventoryPanel);
-        tabs.addTab("📊 Relatorios", reportsPanel);
+        tabs.addTab("Pedidos", orderPanel);
+        tabs.addTab("Estoque", inventoryPanel);
+        tabs.addTab("Relatorios", reportsPanel);
 
         // Link the listener strictly using "this"
         tabs.addChangeListener(this);

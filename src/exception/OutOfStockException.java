@@ -16,8 +16,8 @@ public class OutOfStockException extends Exception {
                                int requested,
                                int available) {
         super(String.format(
-            "Insufficient stock for '%s': "
-                + "requested %d, available %d.",
+            "Estoque insuficiente para '%s': "
+                + "solicitado %d, disponível %d.",
             productName, requested, available));
         this.productName = productName;
         this.requested = requested;

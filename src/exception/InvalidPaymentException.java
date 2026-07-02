@@ -14,8 +14,8 @@ public class InvalidPaymentException extends Exception {
     public InvalidPaymentException(double totalDue,
                                    double amountPaid) {
         super(String.format(
-            "Insufficient payment. Total: R$ %.2f, "
-                + "Paid: R$ %.2f.",
+            "Pagamento insuficiente. Total: R$ %.2f, "
+                + "Pago: R$ %.2f.",
             totalDue, amountPaid));
         this.totalDue = totalDue;
         this.amountPaid = amountPaid;
