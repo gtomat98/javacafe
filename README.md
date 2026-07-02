@@ -76,6 +76,185 @@ java -cp "out;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" Main
 java -cp "out;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore JavaCafeTest
 ```
 
+## Class Diagram (UML)
+
+```mermaid
+classDiagram
+    direction TB
+    class MainFrame {
+        -orderPanel: OrderPanel
+        -inventoryPanel: InventoryPanel
+        -reportsPanel: ReportsPanel
+        -inventoryController: InventoryController
+        +stateChanged(ChangeEvent): void
+    }
+
+    class OrderPanel {
+        -orderController: OrderController
+        -getScaledIcon(String, int, int): ImageIcon
+        +setMenuProducts(List~Product~): void
+        +refreshOrderView(): void
+        -onAddItem(Product): void
+        -onRemoveItem(): void
+        -onFinalizeOrder(): void
+        -onClearOrder(): void
+        -showReceipt(String): void
+    }
+
+    class InventoryPanel {
+        -inventoryController: InventoryController
+        +refreshInventoryView(): void
+        -getScaledIcon(String, int, int): ImageIcon
+        -onAddProduct(): void
+        -onEditProduct(): void
+    }
+
+    class ReportsPanel {
+        -inventoryController: InventoryController
+        +displayReport(SalesReport): void
+    }
+
+    class OrderController {
+        -orderService: OrderService
+        +addItem(Product, int): void
+        +removeItem(Product): void
+        +finalizeOrder(double): Order
+        +clearOrder(): void
+    }
+
+    class InventoryController {
+        -productRepository: IProductRepository
+        -reportService: IReportService
+        -orderController: OrderController
+        -cachedProducts: List~Product~
+        +getAllProducts(): List~Product~
+        +addProduct(String, double, int, String): void
+        +updateProduct(String, String, double, int, String): void
+        -copyImage(String, String): String
+        +getReport(String): SalesReport
+        +reloadProducts(): void
+    }
+
+    class OrderService {
+        -productRepository: IProductRepository
+        -salesRepository: SalesRepository
+        -currentItems: List~OrderItem~
+        -lastOrder: Order
+        +addItem(OrderItem): void
+        +removeItem(OrderItem): void
+        +finalizeOrder(double): Order
+        +getSubtotal(): double
+        +getTax(): double
+        +getTotal(): double
+        +clearOrder(): void
+    }
+
+    class ReportService {
+        -salesRepository: SalesRepository
+        +getToday(): SalesReport
+        +getCurrentWeek(): SalesReport
+        +getCurrentMonth(): SalesReport
+        +buildReport(String, LocalDate, LocalDate, List~Order~): SalesReport
+        -computeTopThree(List~Order~): List~String~
+    }
+
+    class ProductRepository {
+        -FILE_PATH: File
+        +loadAll(): List~Product~
+        +saveAll(List~Product~): void
+        +addProduct(Product): void
+        +updateProduct(Product): void
+        -parseLine(String): Product
+        -toCSVLine(Product): String
+    }
+
+    class SalesRepository {
+        -FILE_PATH: File
+        -DT_FMT: DateTimeFormatter
+        +saveSale(Order): void
+        +loadAll(): List~Order~
+        +loadByDate(LocalDate): List~Order~
+        +loadByDateRange(LocalDate, LocalDate): List~Order~
+        -parseLine(String): Order
+        -parseItems(String): List~OrderItem~
+        -toCSVLine(Order): String
+    }
+
+    class Product {
+        -id: String
+        -name: String
+        -price: double
+        -stockQuantity: int
+        -lowStockThreshold: int
+        -imagePath: String
+        +decrementStock(int): void
+        +isLowStock(): boolean
+    }
+
+    class Order {
+        -orderId: String
+        -timestamp: LocalDateTime
+        -items: List~OrderItem~
+        -subtotal: double
+        -tax: double
+        -total: double
+        -amountPaid: double
+        -change: double
+        +toReceiptText(): String
+    }
+
+    class OrderItem {
+        -product: Product
+        -quantity: int
+        +getLineTotal(): double
+    }
+
+    class SalesReport {
+        -periodLabel: String
+        -from: LocalDate
+        -to: LocalDate
+        -totalRevenue: double
+        -transactionCount: int
+        -topThreeItems: List~String~
+    }
+
+    class AggregatedSale {
+        -productName: String
+        -quantity: int
+        +addQuantity(int): void
+    }
+
+    MainFrame --> OrderPanel
+    MainFrame --> InventoryPanel
+    MainFrame --> ReportsPanel
+    MainFrame --> InventoryController
+    
+    OrderPanel --> OrderController
+    InventoryPanel --> InventoryController
+    ReportsPanel --> InventoryController
+    
+    OrderController --> OrderService
+    InventoryController --> OrderController
+    InventoryController --> IProductRepository
+    InventoryController --> IReportService
+
+    OrderService --> IProductRepository
+    OrderService --> SalesRepository
+    OrderService ..> OrderItem
+    OrderService ..> Order
+
+    ReportService --> SalesRepository
+    ReportService ..> SalesReport
+
+    ProductRepository ..> Product
+    SalesRepository ..> Order
+    SalesRepository ..> OrderItem
+
+    Order --> OrderItem
+    OrderItem --> Product
+    SalesReport ..> AggregatedSale
+```
+
 ## Technologies
 
 - **Language:** Java 8
