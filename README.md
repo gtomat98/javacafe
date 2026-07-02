@@ -2,6 +2,12 @@
 
 A Java desktop POS (Point of Sale) application developed as an academic project for the Object-Oriented Programming course.
 
+## Team
+
+- **Ricardo Baptista Tessari** — 17383184
+- **Jorge Vinicius Chaves Cardoso** — 15640447
+- **Matheus D'Afonseca** — 13686917
+
 ## Overview
 
 JavaCafe simulates a real-world coffee shop cashier system. It allows staff to register orders, manage the product inventory, and visualize sales reports — all through a graphical interface built with Java Swing.
@@ -13,6 +19,7 @@ JavaCafe simulates a real-world coffee shop cashier system. It allows staff to r
 - **Sales Reports** — View revenue summaries and the top 3 best-selling products filtered by Today, Current Week, or Current Month.
 - **Data Persistence** — All products and sales are saved automatically to CSV files on disk (`data/products.csv`, `data/sales.csv`).
 - **Custom Exceptions** — `OutOfStockException` and `InvalidPaymentException` provide descriptive error messages when rules are violated.
+- **Additional validation** — The inventory controller prevents stock modification whenever the product is already present in the active shopping cart. This business rule is validated through JUnit tests and is implemented directly in the controller rather than as a separate custom exception class.
 
 ## Project Structure
 
@@ -254,6 +261,24 @@ classDiagram
     OrderItem --> Product
     SalesReport ..> AggregatedSale
 ```
+## Unit Testing
+
+This project includes a comprehensive **JUnit** test suite (`JavaCafeTest`) covering the application's core business logic.
+
+The implemented tests validate:
+
+- Product creation, getters, and setters
+- Stock management and low-stock detection
+- `OutOfStockException` handling
+- Order item subtotal calculations
+- Order creation, total calculation, taxes, and change computation
+- Currency formatting utilities
+- `InvalidPaymentException` validation
+
+All unit tests were executed successfully, with **no failures or errors**.
+
+**Framework:** JUnit  
+**Status:** ✅ All tests passed
 
 ## Technologies
 
