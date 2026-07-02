@@ -1,0 +1,12 @@
+id,name,price,stockQuantity,lowStockThreshold,imagePath
+cafe-001,Cappuccino,8.50,98,5,data/images/cafe-001.jfif
+cafe-002,Espresso,5.00,26,5,
+cafe-003,Cafe com Leite,6.00,24,10,
+cafe-004,Latte,9.00,12,5,
+cafe-005,Mocha,10.00,10,5,
+cafe-006,Cha Verde,4.50,20,5,
+cafe-007,Suco de Laranja,7.00,5,5,
+cafe-008,Croissant,6.50,27,5,
+cafe-009,Pao de Queijo,3.50,11,5,
+cafe-010,Bolo de Chocolate,12.00,3,5,
+c931e806,Banana,12.00,6,5,

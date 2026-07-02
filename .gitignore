@@ -1,0 +1,16 @@
+# Compiled class files
+out/
+*.class
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.gemini/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Data files (sales history - optional to exclude)
+# data/sales.csv
